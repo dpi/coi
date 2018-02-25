@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Used to wrap a field, while displaying a COI override message.
+ *
+ * Available variables:
+ * - children: The rendered child elements of this container.
+ * - override_message:
+ *
+ * @see \template_preprocess_coi_container()
+ */
+#}
+{{ children }}
+<div class="description">
+  <strong>{{ override_message }}</strong>
+</div>
