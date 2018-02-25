@@ -44,6 +44,9 @@ class CoiSettings extends ConfigFormBase {
       ],
       '#description' => $this->t('What to do if an element representing a configuration is overridden.'),
       '#default_value' => $config->get('override_behavior'),
+      '#config' => [
+        'config' => ['coi.settings', 'override_behavior'],
+      ],
     ];
 
     $form['message'] = [
@@ -59,6 +62,9 @@ class CoiSettings extends ConfigFormBase {
       '#title' => $this->t('Show message'),
       '#description' => $this->t('Show a message to user if an element representing a configuration is overridden.'),
       '#default_value' => $config->get('message.enabled'),
+      '#config' => [
+        'config' => ['coi.settings', 'message.enabled'],
+      ],
     ];
 
     $form['message']['template'] = [
@@ -70,6 +76,9 @@ class CoiSettings extends ConfigFormBase {
         'visible' => [
           ':input[name="message[enabled]"]' => ['checked' => TRUE],
         ],
+      ],
+      '#config' => [
+        'config' => ['coi.settings', 'message.template'],
       ],
     ];
 
@@ -87,6 +96,9 @@ class CoiSettings extends ConfigFormBase {
       '#title' => $this->t('Show real value'),
       '#description' => $this->t('Allow user to see the overridden value. If enabled, you may show the real value in message or element itself.'),
       '#default_value' => $config->get('overridden_value.enabled'),
+      '#config' => [
+        'config' => ['coi.settings', 'overridden_value.enabled'],
+      ],
     ];
 
     $form['overridden_value']['element'] = [
@@ -104,6 +116,9 @@ class CoiSettings extends ConfigFormBase {
           ':input[name="override_behavior"]' => ['value' => CoiValues::OVERRIDE_BEHAVIOUR_DISABLE],
         ],
       ],
+      '#config' => [
+        'config' => ['coi.settings', 'overridden_value.element'],
+      ],
     ];
 
     // @todo force enabled unless settings.php allows it.
@@ -116,6 +131,9 @@ class CoiSettings extends ConfigFormBase {
         'visible' => [
           ':input[name="overridden_value[enabled]"]' => ['checked' => TRUE],
         ],
+      ],
+      '#config' => [
+        'config' => ['coi.settings', 'overridden_value.secrets'],
       ],
     ];
 
@@ -131,6 +149,9 @@ class CoiSettings extends ConfigFormBase {
       '#title' => $this->t('Add classes'),
       '#description' => $this->t('Add classes to HTML allowing themers to target elements representing configuration.'),
       '#default_value' => $config->get('styling.selectors'),
+      '#config' => [
+        'config' => ['coi.settings', 'styling.selectors'],
+      ],
     ];
 
     $form['styling']['default'] = [
@@ -144,6 +165,9 @@ class CoiSettings extends ConfigFormBase {
         'visible' => [
           ':input[name="styling[selectors]"]' => ['checked' => TRUE],
         ],
+      ],
+      '#config' => [
+        'config' => ['coi.settings', 'styling.default'],
       ],
     ];
 
