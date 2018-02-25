@@ -9,5 +9,16 @@
     "issues": "https://github.com/dpi/coi/issues",
     "source": "https://github.com/dpi/coi"
   },
-  "require": { }
+  "authors": [
+    {
+      "name": "Daniel Phin",
+      "email": "pro@danielph.in",
+      "homepage": "http://danielph.in",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "drupal/core": "^8.5"
+  }
 }

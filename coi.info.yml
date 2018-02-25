@@ -2,4 +2,6 @@ name: 'Config Override Inspector'
 type: module
 description: ''
 core: 8.x
+php: 7.1
 package: 'Administration'
+configure: coi.settings
