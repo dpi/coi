@@ -1,0 +1,37 @@
+coi.settings:
+  type: config_object
+  label: 'COI'
+  mapping:
+    override_behavior:
+      type: string
+      label: 'Override behavior'
+    message:
+      type: mapping
+      mapping:
+        enabled:
+          type: boolean
+          label: 'Enabled'
+        template:
+          type: text
+          label: 'Message template'
+    overridden_value:
+      type: mapping
+      mapping:
+        enabled:
+          type: boolean
+          label: 'Enabled'
+        element:
+          type: boolean
+          label: 'Show overridden value in element'
+        secrets:
+          type: boolean
+          label: 'Expose secrets'
+    styling:
+      type: mapping
+      mapping:
+        selectors:
+          type: boolean
+          label: 'Add classes'
+        default:
+          type: boolean
+          label: 'Add default CSS'
