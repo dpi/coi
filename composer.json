@@ -1,0 +1,13 @@
+{
+  "name": "drupal/coi",
+  "type": "drupal-module",
+  "description": "",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/coi",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/dpi/coi/issues",
+    "source": "https://github.com/dpi/coi"
+  },
+  "require": { }
+}

@@ -1,0 +1,5 @@
+name: 'Config Override Inspector'
+type: module
+description: ''
+core: 8.x
+package: 'Administration'
