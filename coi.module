@@ -1,0 +1,60 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * @file
+ * Contains hooks for Config Override Inspector.
+ */
+function coi_form_alter(array &$form, FormStateInterface $form_state, string $form_id) : void {
+  /** @var \Drupal\coi\CoiFormAlterationsInterface $service */
+  $service = \Drupal::service('coi.form_alterations');
+  $service->hookFormAlter($form, $form_state, $form_id);
+}
+
+/**
+ * Preprocessor for all elements.
+ *
+ * @see \coi_element_info_alter()
+ */
+function coi_element_preprocessor(array &$element, FormStateInterface $form_state, ?array &$complete_form) : array {
+  if (isset($element["#coi_override_message"])) {
+    $element['#theme_wrappers'][] = 'coi_container';
+  }
+  return $element;
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function coi_element_info_alter(array &$types) : void {
+  foreach ($types as &$type) {
+    $type['#process'][] = 'coi_element_preprocessor';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function coi_theme(array $existing, string $type, string $theme, string $path) : array {
+  return [
+    'coi_container' => [
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for COI container templates.
+ *
+ * Default template: coi-container.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ */
+function template_preprocess_coi_container(array &$variables) : void {
+  $element = $variables['element'];
+  $variables['children'] = $element['#children'];
+  $variables['override_message']= $element["#coi_override_message"];
+}
