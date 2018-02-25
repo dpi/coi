@@ -1,0 +1,9 @@
+coi.settings:
+  path: '/admin/config/user-interface/coi'
+  defaults:
+    _form: '\Drupal\coi\Form\CoiSettings'
+    _title: 'Config Override Inspector Settings'
+  requirements:
+    _permission: 'administer config override inspector'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,6 @@
+coi.coi_settings:
+  title: 'Config Override Inspector Settings'
+  route_name: coi.settings
+  description: 'Modify settings for Configuration Override Inspector.'
+  parent: system.admin_config_ui
+
