@@ -1,0 +1,4 @@
+administer config override inspector:
+  title: 'Administer Config Override Inspector'
+  description: 'Modify settings for Config Override Inspector'
+  restrict access: true
