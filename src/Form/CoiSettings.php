@@ -45,7 +45,7 @@ class CoiSettings extends ConfigFormBase {
       '#description' => $this->t('What to do if an element representing a configuration is overridden.'),
       '#default_value' => $config->get('override_behavior'),
       '#config' => [
-        'config' => ['coi.settings', 'override_behavior'],
+        'key' => 'coi.settings:override_behavior',
       ],
     ];
 
@@ -63,7 +63,7 @@ class CoiSettings extends ConfigFormBase {
       '#description' => $this->t('Show a message to user if an element representing a configuration is overridden.'),
       '#default_value' => $config->get('message.enabled'),
       '#config' => [
-        'config' => ['coi.settings', 'message.enabled'],
+        'key' => 'coi.settings:message.enabled',
       ],
     ];
 
@@ -78,7 +78,7 @@ class CoiSettings extends ConfigFormBase {
         ],
       ],
       '#config' => [
-        'config' => ['coi.settings', 'message.template'],
+        'key' => 'coi.settings:message.template',
       ],
     ];
 
@@ -97,7 +97,7 @@ class CoiSettings extends ConfigFormBase {
       '#description' => $this->t('Allow user to see the overridden value. If enabled, you may show the real value in message or element itself.'),
       '#default_value' => $config->get('overridden_value.enabled'),
       '#config' => [
-        'config' => ['coi.settings', 'overridden_value.enabled'],
+        'key' => 'coi.settings:overridden_value.enabled',
       ],
     ];
 
@@ -117,7 +117,7 @@ class CoiSettings extends ConfigFormBase {
         ],
       ],
       '#config' => [
-        'config' => ['coi.settings', 'overridden_value.element'],
+        'key' => 'coi.settings:overridden_value.element',
       ],
     ];
 
@@ -133,7 +133,7 @@ class CoiSettings extends ConfigFormBase {
         ],
       ],
       '#config' => [
-        'config' => ['coi.settings', 'overridden_value.secrets'],
+        'key' => 'coi.settings:overridden_value.secrets',
       ],
     ];
 
@@ -150,7 +150,7 @@ class CoiSettings extends ConfigFormBase {
       '#description' => $this->t('Add classes to HTML allowing themers to target elements representing configuration.'),
       '#default_value' => $config->get('styling.selectors'),
       '#config' => [
-        'config' => ['coi.settings', 'styling.selectors'],
+        'key' => 'coi.settings:styling.selectors',
       ],
     ];
 
@@ -167,7 +167,7 @@ class CoiSettings extends ConfigFormBase {
         ],
       ],
       '#config' => [
-        'config' => ['coi.settings', 'styling.default'],
+        'key' => 'coi.settings:styling.default',
       ],
     ];
 
