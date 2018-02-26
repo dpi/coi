@@ -6,6 +6,37 @@ use Drupal\Core\Form\FormStateInterface;
  * @file
  * Contains hooks for Config Override Inspector.
  */
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function coi_module_implements_alter(array &$implementations, string $hook) {
+  if ($hook == 'form_alter') {
+    if (!isset($implementations['config_override_core_fields'])) {
+      return;
+    }
+
+    $implementations_original = $implementations;
+
+    // Detects if config_override_core_fields module is enabled, and if so moves
+    // our 'hook_form_alter' after it.
+    $config_override_core_fields_group = $implementations_original['config_override_core_fields'];
+    unset($implementations_original['config_override_core_fields']);
+
+    // Rebuild implementations.
+    $implementations = [];
+    foreach ($implementations_original as $key => $implementation) {
+      if ($key === 'coi') {
+        $implementations['config_override_core_fields'] = $config_override_core_fields_group;
+      }
+      $implementations[$key] = $implementation;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
 function coi_form_alter(array &$form, FormStateInterface $form_state, string $form_id) : void {
   /** @var \Drupal\coi\CoiFormAlterationsInterface $service */
   $service = \Drupal::service('coi.form_alterations');
