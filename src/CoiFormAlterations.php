@@ -65,7 +65,7 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
 
       $this->alterTree($element);
 
-      if (!isset($element['#config'])) {
+      if (!isset($element['#config']['key'])) {
         continue;
       }
 
