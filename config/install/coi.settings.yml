@@ -1,7 +1,7 @@
 override_behavior: 'disable'
 message:
   enabled: true
-  template: 'Changes you make here will not take effect due to environment specific configuration.'
+  template: 'This field is overridden by environment specific configuration.'
 overridden_value:
   enabled: true
   element: true
