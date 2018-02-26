@@ -20,5 +20,8 @@
   "require": {
     "php": ">=7.1.0",
     "drupal/core": "^8.5"
+  },
+  "suggest": {
+    "drupal/config_override_core_fields": "Integrates COI with Drupal core."
   }
 }
