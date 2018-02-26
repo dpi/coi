@@ -70,7 +70,7 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
       }
 
       $elementConfig = $element['#config'];
-      list($configBin, $configKey) = $elementConfig['config'];
+      list($configBin, $configKey) = explode(':', $elementConfig['key']);
 
       $config = $this->configFactory->get($configBin);
       $hasOverrides = $config->hasOverrides($configKey);
