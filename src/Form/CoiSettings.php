@@ -3,13 +3,46 @@
 namespace Drupal\coi\Form;
 
 use Drupal\coi\CoiValues;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Config Override Inspector settings.
  */
 class CoiSettings extends ConfigFormBase {
+
+  /**
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * Constructs a \Drupal\system\ConfigFormBase object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The factory for configuration objects.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, ModuleHandlerInterface $module_handler) {
+    parent::__construct($config_factory);
+    $this->moduleHandler = $module_handler;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('module_handler')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -82,7 +115,14 @@ class CoiSettings extends ConfigFormBase {
       ],
     ];
 
-    // @todo message tokens.
+    if ($this->moduleHandler->moduleExists('token')) {
+      $form['message']['tokens'] = [
+        '#theme' => 'token_tree_link',
+        '#token_types' => ['coi'],
+        '#show_nested' => FALSE,
+        '#global_types' => FALSE,
+      ];
+    }
 
     $form['overridden_value'] = [
       '#type' => 'details',
