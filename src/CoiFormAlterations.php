@@ -70,7 +70,7 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
 
       // If already disabled.
       $access = isset($element['#access']) ? $element['#access'] : TRUE;
-      if (!$access || !empty($element['#disabled']) || !$modifyElement) {
+      if (!$access || !empty($element['#disabled'])) {
         continue;
       }
 
