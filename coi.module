@@ -103,6 +103,33 @@ function coi_token_info() : array {
 }
 
 /**
+ * Implements hook_tokens().
+ */
+function coi_tokens(string $type, array $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) : array {
+  $replacements = [];
+
+  if ($type == 'coi' && !empty($data['coi'])) {
+    /** @var array $values */
+    $values = $data['coi'];
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'active-value':
+          $replacements[$original] = $values['active-value'];
+          break;
+
+        case 'overridden-value':
+          $replacements[$original] = $values['overridden-value'];
+          break;
+
+      }
+    }
+  }
+
+  return $replacements;
+}
+
+/**
  * Prepares variables for COI container templates.
  *
  * Default template: coi-container.html.twig.
