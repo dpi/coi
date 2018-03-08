@@ -7,6 +7,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Utility\Token;
 
 /**
  * Form alterations for COI.
@@ -23,13 +24,23 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
   protected $configFactory;
 
   /**
+   * The token service.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
+  protected $token;
+
+  /**
    * Constructs a new CoiFormAlterations object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
+   * @param \Drupal\Core\Utility\Token $token
+   *   The token service.
    */
-  public function __construct(ConfigFactoryInterface $config_factory) {
+  public function __construct(ConfigFactoryInterface $config_factory, Token $token) {
     $this->configFactory = $config_factory;
+    $this->token = $token;
   }
 
   /**
@@ -113,7 +124,12 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
       // Message.
       if ($coiSettings->get('message.enabled')) {
         $message = $coiSettings->get('message.template');
-        $element['#coi_override_message'] = $message;
+        $tokens = [];
+        $tokens['coi']['active-value'] = $config
+          ->getOriginal($configKey, FALSE);
+        $tokens['coi']['overridden-value'] = $value;
+        $element['#coi_override_message'] = $this->token
+          ->replace($message, $tokens);;
       }
     }
   }
