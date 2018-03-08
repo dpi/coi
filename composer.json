@@ -23,5 +23,6 @@
   },
   "suggest": {
     "drupal/config_override_core_fields": "Integrates COI with Drupal core."
+    "drupal/token": "Shows Token UI on COI settings form."
   }
 }
