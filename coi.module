@@ -76,6 +76,33 @@ function coi_theme(array $existing, string $type, string $theme, string $path) :
 }
 
 /**
+ * Implements hook_token_info().
+ */
+function coi_token_info() : array {
+  return [
+    'types' => [
+      'coi' => [
+        'name' => t('Configuration Override Inspector'),
+        'description' => t('Tokens for configuration overrides.'),
+        'needs-data' => 'coi',
+      ],
+    ],
+    'tokens' => [
+      'coi' => [
+        'overridden-value' => [
+          'name' => t("Overridden value"),
+          'description' => t("Show override value. This value is not set if no override is applicable."),
+        ],
+        'active-value' => [
+          'name' => t("Current value"),
+          'description' => t("Show active value. This is the value before overrides are applied."),
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
  * Prepares variables for COI container templates.
  *
  * Default template: coi-container.html.twig.
