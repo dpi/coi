@@ -66,8 +66,6 @@ class CoiFormAlterations implements CoiFormAlterationsInterface {
       $coiSettings = $this->configFactory->get('coi.settings');
       $overrideBehavior = $coiSettings->get('override_behavior');
 
-      $modifyElement = !empty($overrideBehavior) && $overrideBehavior !== CoiValues::OVERRIDE_BEHAVIOUR_NONE;
-
       // If already disabled.
       $access = isset($element['#access']) ? $element['#access'] : TRUE;
       if (!$access || !empty($element['#disabled'])) {
